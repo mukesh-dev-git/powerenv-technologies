@@ -1,0 +1,86 @@
+---
+// src/components/Footer.astro
+const currentYear = new Date().getFullYear();
+---
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <h4>Powerenv Technologies</h4>
+                <p>Ending India's Energy Loss Crisis with ultra-reliable smart metering technology.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigate</h4>
+                <ul>
+                    <li><a href="/our-solution">Our Solution</a></li>
+                    <li><a href="/the-technology">The Technology</a></li>
+                    <li><a href="/our-impact">Our Impact</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Get in Touch</h4>
+                <p>
+                    Email: <a href="mailto:powerenvtechnologies@gmail.com">powerenvtechnologies@gmail.com</a><br>
+                    Chennai, Tamil Nadu, India
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; {currentYear} Powerenv Technologies. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .site-footer {
+        background-color: var(--primary-blue);
+        color: #a9b4c2;
+        padding: 4rem 0 2rem 0;
+        font-size: 0.9rem;
+    }
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 2rem;
+        padding-bottom: 3rem;
+        border-bottom: 1px solid #2c3e50;
+    }
+    .footer-about p {
+        max-width: 40ch;
+        margin-top: 1rem;
+    }
+    .footer-about h4, .footer-links h4, .footer-contact h4 {
+        color: var(--text-light);
+        font-family: var(--font-heading);
+        margin-bottom: 1rem;
+    }
+    .footer-links ul {
+        list-style: none;
+    }
+    .footer-links li {
+        margin-bottom: 0.5rem;
+    }
+    .footer-links a, .footer-contact a {
+        color: #a9b4c2;
+    }
+    .footer-links a:hover, .footer-contact a:hover {
+        color: var(--text-light);
+    }
+    .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+        .footer-grid {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+        .footer-about {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>

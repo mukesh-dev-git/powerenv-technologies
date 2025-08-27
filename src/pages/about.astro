@@ -1,0 +1,160 @@
+---
+// src/pages/about.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+---
+<BaseLayout title="About Us">
+    <PageHeader 
+        title="About Powerenv Technologies"
+        subtitle="We are a team of engineers, innovators, and problem-solvers dedicated to securing India's energy future."
+    />
+
+    <!-- ============================================= -->
+    <!-- Our Mission Section -->
+    <!-- ============================================= -->
+    <section class="mission-section fade-in">
+        <div class="container">
+            <div class="mission-content">
+                <div class="text-column">
+                    <h2>Our Mission</h2>
+                    <p>India's rapid growth and development depend on a stable, efficient, and modern energy grid. We founded Powerenv Technologies with a single, focused mission: to solve the critical challenge of Aggregate Technical & Commercial (AT&C) losses for electricity distribution companies (DISCOMs).</p>
+                    <p>We believe that 100% data accountability is the key to financial stability, operational excellence, and a sustainable energy future for the nation. Our technology is designed not just to identify problems, but to provide the reliable foundation upon which a truly smart grid can be built.</p>
+                </div>
+                <div class="image-column">
+                    <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="A diverse team collaborating around a table with a city view.">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- Leadership Team Section -->
+    <!-- ============================================= -->
+    <section class="team-section fade-in">
+        <div class="container text-center">
+            <h2>Our Leadership</h2>
+            <p class="section-subtitle">Meet the minds driving our mission forward.</p>
+            <div class="team-grid">
+                <!-- Team Member 1 -->
+                <div class="team-card">
+                    <img src="https://placehold.co/300x300/e0e0e0/333?text=Founder+Photo" alt="Photo of a team member">
+                    <h3>[Founder's Name]</h3>
+                    <p class="title">Founder & CEO</p>
+                    <p class="bio">A brief bio highlighting relevant experience in the energy sector, telecommunications, or technology leadership.</p>
+                </div>
+                <!-- Team Member 2 -->
+                <div class="team-card">
+                    <img src="https://placehold.co/300x300/e0e0e0/333?text=CTO+Photo" alt="Photo of a team member">
+                    <h3>[CTO's Name]</h3>
+                    <p class="title">Chief Technology Officer</p>
+                    <p class="bio">A brief bio focusing on technical expertise, hardware design, network architecture, or software development.</p>
+                </div>
+                <!-- Team Member 3 -->
+                <div class="team-card">
+                    <img src="https://placehold.co/300x300/e0e0e0/333?text=Advisor+Photo" alt="Photo of a team member">
+                    <h3>[Advisor's Name]</h3>
+                    <p class="title">Strategic Advisor</p>
+                    <p class="bio">A brief bio for a key advisor, perhaps with deep industry connections or experience within Indian DISCOMs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<script>
+	// Simple fade-in on scroll animation
+	const fadeInElements = document.querySelectorAll('.fade-in');
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('visible');
+				observer.unobserve(entry.target);
+			}
+		});
+	}, { threshold: 0.1 });
+	fadeInElements.forEach(el => observer.observe(el));
+</script>
+
+<style>
+    .text-center { text-align: center; }
+
+    .mission-section {
+        padding: 6rem 0;
+        background-color: #fff;
+    }
+    .mission-content {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+    .mission-content h2 {
+        font-size: 2.5rem;
+    }
+    .mission-content p {
+        font-size: 1.1rem;
+    }
+    .image-column img {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .team-section {
+        padding: 6rem 0;
+    }
+    .section-subtitle {
+        max-width: 60ch;
+        margin: 0 auto 3rem auto;
+        font-size: 1.1rem;
+    }
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+    .team-card {
+        text-align: center;
+    }
+    .team-card img {
+        width: 100%;
+        max-width: 200px;
+        border-radius: 50%;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .team-card h3 {
+        margin-bottom: 0.25rem;
+    }
+    .team-card .title {
+        color: var(--secondary-green);
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+    .team-card .bio {
+        font-size: 0.9rem;
+        color: #555;
+    }
+
+    /* Animation */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @media (max-width: 992px) {
+        .mission-content {
+            grid-template-columns: 1fr;
+        }
+        .image-column {
+            order: -1; /* Move image to top on mobile */
+        }
+        .team-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

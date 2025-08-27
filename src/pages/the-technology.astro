@@ -1,0 +1,182 @@
+---
+// src/pages/the-technology.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+---
+<BaseLayout title="The Technology">
+    <PageHeader 
+        title="The LoRaWAN Advantage: Built for India"
+        subtitle="Choosing the right communication technology is the single most important factor for a successful AMI deployment."
+    />
+
+    <!-- ============================================= -->
+    <!-- Introductory Content -->
+    <!-- ============================================= -->
+    <section class="intro-section fade-in">
+        <div class="container">
+            <div class="intro-content">
+                <p>While cellular (NB-IoT/4G) is an option, it was not designed for the unique challenges of Indian grid infrastructure. Public telecom networks face congestion, variable coverage in dense areas, and recurring operational costs that make them unsustainable for mission-critical utility deployments at scale.</p>
+                <p><strong>We chose LoRaWAN because it is technically superior for this specific mission, offering unparalleled reliability, security, and the lowest total cost of ownership.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- Comparison Table Section -->
+    <!-- ============================================= -->
+    <section class="comparison-section fade-in">
+        <div class="container">
+            <div class="table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th class="highlighted-col">Powerenv LoRaWAN</th>
+                            <th>Conventional Cellular (NB-IoT/4G)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Coverage</strong></td>
+                            <td class="highlighted-col">
+                                <span class="icon-good">✓</span> Excellent: Deep indoor & basement penetration. Guaranteed signal in dense urban and remote areas.
+                            </td>
+                            <td>
+                                <span class="icon-bad">✗</span> Poor: Unreliable in basements, dense construction, and network shadow areas.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cost Model</strong></td>
+                            <td class="highlighted-col">
+                                <span class="icon-good">✓</span> Lowest TCO: One-time network CAPEX, zero recurring data or SIM fees for the life of the project.
+                            </td>
+                            <td>
+                                <span class="icon-bad">✗</span> High TCO: Recurring SIM fees for every single meter, every month, leading to massive operational expenses.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reliability</strong></td>
+                            <td class="highlighted-col">
+                                <span class="icon-good">✓</span> High: Private, dedicated network you control. Immune to public network congestion or outages.
+                            </td>
+                            <td>
+                                <span class="icon-bad">✗</span> Variable: Dependent on public telecom network health, which can be unreliable during peak times or emergencies.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Scalability</strong></td>
+                            <td class="highlighted-col">
+                                <span class="icon-good">✓</span> Rapid: Fewer gateways cover larger areas, simplifying deployment and management for millions of endpoints.
+                            </td>
+                            <td>
+                                <span class="icon-bad">✗</span> Slow: Every meter is a new cellular connection to manage, increasing complexity and points of failure.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Security</strong></td>
+                            <td class="highlighted-col">
+                                <span class="icon-good">✓</span> High: Private network with end-to-end AES-128 encryption. Data never touches the public internet.
+                            </td>
+                            <td>
+                                <span class="icon-bad">✗</span> Moderate: Relies on public network security protocols, adding another layer of potential vulnerability.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+</BaseLayout>
+
+<script>
+	// Simple fade-in on scroll animation
+	const fadeInElements = document.querySelectorAll('.fade-in');
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('visible');
+				observer.unobserve(entry.target);
+			}
+		});
+	}, { threshold: 0.1 });
+	fadeInElements.forEach(el => observer.observe(el));
+</script>
+
+<style>
+    .intro-section {
+        background-color: #fff;
+        padding: 6rem 0;
+    }
+    .intro-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 1.15rem;
+    }
+    .intro-content p:last-child {
+        margin-top: 2rem;
+    }
+
+    .comparison-section {
+        padding: 6rem 0;
+    }
+    .table-wrapper {
+        overflow-x: auto; /* for responsiveness on small screens */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        border-radius: 8px;
+    }
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+    }
+    .comparison-table th, .comparison-table td {
+        padding: 1.5rem;
+        text-align: left;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .comparison-table th {
+        background-color: var(--primary-blue);
+        color: #fff;
+        font-size: 1.1rem;
+    }
+    .comparison-table td {
+        vertical-align: top;
+    }
+    .comparison-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+    .comparison-table tbody tr:hover {
+        background-color: #f9f9f9;
+    }
+    .highlighted-col {
+        background-color: #f0fff9;
+    }
+    .comparison-table tbody tr:hover .highlighted-col {
+        background-color: #e6f9f2;
+    }
+
+    .icon-good, .icon-bad {
+        font-weight: bold;
+        margin-right: 0.5rem;
+        font-size: 1.2rem;
+    }
+    .icon-good {
+        color: var(--secondary-green);
+    }
+    .icon-bad {
+        color: #e74c3c;
+    }
+
+    /* Animation */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>

@@ -1,0 +1,143 @@
+---
+// src/pages/our-impact.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+---
+<BaseLayout title="Our Impact (ESG)">
+    <PageHeader 
+        title="Building a Sustainable and Equitable Energy Future"
+        subtitle="Our work goes beyond technology. We are committed to creating a positive environmental, social, and governance footprint for India."
+    />
+
+    <!-- ============================================= -->
+    <!-- Environmental Section (E) -->
+    <!-- ============================================= -->
+    <section class="impact-section fade-in">
+        <div class="container impact-grid">
+            <div class="impact-image">
+                <img src="https://images.pexels.com/photos/433308/pexels-photo-433308.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Wind turbines against a blue sky, representing renewable energy">
+            </div>
+            <div class="impact-content">
+                <span class="esg-letter">E</span>
+                <h2>Environmental: Enabling a Green Grid</h2>
+                <p>By drastically reducing AT&C losses, we directly lower the need for excess power generation, which in turn reduces carbon emissions. Our platform provides the foundational data layer necessary for efficiently integrating renewable energy sources like solar and wind, and for managing the demands of electric vehicle (EV) charging infrastructure, paving the way for a cleaner energy future.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- Social Section (S) -->
+    <!-- ============================================= -->
+    <section class="impact-section impact-reversed fade-in">
+        <div class="container impact-grid">
+            <div class="impact-image">
+                <img src="https://images.pexels.com/photos/7743639/pexels-photo-7743639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="A smiling family in their home, representing community empowerment">
+            </div>
+            <div class="impact-content">
+                <span class="esg-letter">S</span>
+                <h2>Social: Empowering a Nation</h2>
+                <p>Accurate and timely data ensures fair, transparent billing for millions of citizens, eliminating disputes and building trust. More importantly, a stable and efficient grid powers homes, hospitals, schools, and businesses, fostering economic growth and improving the quality of life for communities across the nation. Reliable energy is a cornerstone of social progress.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- Governance Section (G) -->
+    <!-- ============================================= -->
+    <section class="impact-section fade-in">
+        <div class="container impact-grid">
+            <div class="impact-image">
+                <img src="https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="A diverse team in a professional meeting, representing trust and ethical governance">
+            </div>
+            <div class="impact-content">
+                <span class="esg-letter">G</span>
+                <h2>Governance: A Foundation of Trust</h2>
+                <p>We are committed to the highest standards of data security, privacy, and ethical business practices. In managing critical national infrastructure, we provide DISCOMs with complete ownership and control over their data. Our transparent operations and robust security protocols ensure that the foundation of India's modern grid is built on trust and integrity.</p>
+            </div>
+        </div>
+    </section>
+
+</BaseLayout>
+
+<script>
+	// Simple fade-in on scroll animation
+	const fadeInElements = document.querySelectorAll('.fade-in');
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('visible');
+				observer.unobserve(entry.target);
+			}
+		});
+	}, { threshold: 0.1 });
+	fadeInElements.forEach(el => observer.observe(el));
+</script>
+
+<style>
+    .impact-section {
+        padding: 6rem 0;
+        background-color: #fff;
+    }
+    .impact-section:nth-child(even) {
+        background-color: var(--neutral-light-gray);
+    }
+
+    .impact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .impact-image img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .impact-content h2 {
+        font-size: 2.5rem;
+        margin-top: 0.5rem;
+    }
+    .impact-content p {
+        font-size: 1.1rem;
+        margin-top: 1rem;
+    }
+    
+    .esg-letter {
+        font-size: 3rem;
+        font-weight: bold;
+        color: var(--secondary-green);
+        line-height: 1;
+        font-family: var(--font-heading);
+    }
+
+    /* Modifier to reverse the column order */
+    .impact-reversed .impact-grid .impact-image {
+        order: 2;
+    }
+    .impact-reversed .impact-grid .impact-content {
+        order: 1;
+    }
+
+    /* Animation */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @media (max-width: 992px) {
+        .impact-grid {
+            grid-template-columns: 1fr;
+        }
+        .impact-reversed .impact-grid .impact-image,
+        .impact-reversed .impact-grid .impact-content {
+            order: initial; /* Reset order on mobile */
+        }
+    }
+</style>

@@ -1,16 +1,334 @@
 ---
-
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
+<BaseLayout title="Home">
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+	<!-- ============================================= -->
+	<!-- Hero Section -->
+	<!-- ============================================= -->
+	<section class="hero">
+		<div class="container hero-content">
+			<h1>Ending India's Energy Loss Crisis.</h1>
+			<p class="sub-headline">
+				Powerenv Technologies provides the ultra-reliable smart metering platform that enables electricity distributors to eliminate revenue loss, modernize the grid, and build a sustainable energy future.
+			</p>
+			<a href="/contact" class="button-primary">Learn About Our Pilot Program</a>
+		</div>
+		<div class="hero-visual">
+			<!-- A more relevant and professional image is used here. -->
+			<img src="/images/Overview.png" alt="Modern electrical grid infrastructure at dusk">
+		</div>
+	</section>
+
+	<!-- ============================================= -->
+	<!-- Problem Section -->
+	<!-- ============================================= -->
+	<section class="problem-section fade-in">
+		<div class="container">
+			<div class="problem-content">
+				<div class="stat-column">
+					<div class="stat-number">17%+</div>
+					<div class="stat-label">AT&C Losses</div>
+				</div>
+				<div class="text-column">
+					<h2>The Trillion-Rupee Problem</h2>
+					<p>India's DISCOMs are facing critical AT&C losses. It's a significant threat to our energy security and financial stability, translating to thousands of crores in lost revenue annually. These losses stem from theft, inefficiency, and a lack of real-time data from unreliable legacy systems.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ============================================= -->
+	<!-- Solution Section -->
+	<!-- ============================================= -->
+	<section class="solution-section fade-in">
+		<div class="container text-center">
+			<h2>A Complete Solution for 100% Accountability.</h2>
+			<div class="solution-grid">
+				<!-- Column 1 -->
+				<div class="solution-card">
+					<div class="icon-wrapper">
+						<!-- Signal Tower Icon -->
+						<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12" y2="22"></line><line x1="12" y1="17" x2="12" y2="4"></line></svg>
+					</div>
+					<h3>Unbreakable Connectivity</h3>
+					<p>Our private LoRaWAN network guarantees data from every meter, even in basements and remote areas where cellular fails.</p>
+				</div>
+				<!-- Column 2 -->
+				<div class="solution-card">
+					<div class="icon-wrapper">
+						<!-- Rupee Symbol Icon -->
+						<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12"></path><path d="M6 8h12"></path><path d="M6 13h12"></path><path d="M6 18h12"></path><path d="M18 8a4 4 0 0 0-4-4h-4a4 4 0 0 0-4 4"></path><path d="M18 13a4 4 0 0 0-4-4h-4a4 4 0 0 0-4 4"></path></svg>
+					</div>
+					<h3>Lowest Total Cost of Ownership</h3>
+					<p>Eliminate recurring SIM card fees forever. Our MaaS model converts a massive CAPEX into a predictable OPEX.</p>
+				</div>
+				<!-- Column 3 -->
+				<div class="solution-card">
+					<div class="icon-wrapper">
+						<!-- Shield Icon -->
+						<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+					</div>
+					<h3>Strategic Grid Independence</h3>
+					<p>Own your grid's data network. Enhance security and future-proof your infrastructure, free from reliance on public telcos.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ============================================= -->
+	<!-- How It Works Section -->
+	<!-- ============================================= -->
+	<section class="how-it-works-section fade-in">
+		<div class="container text-center">
+			<h2>How It Works</h2>
+			<div class="steps-grid">
+				<div class="step-card">
+					<div class="step-number">1</div>
+					<h3>Deploy</h3>
+					<p>We install our robust PowrMET smart meters and LoRaWAN gateways across your entire network.</p>
+				</div>
+				<div class="step-arrow">&rarr;</div>
+				<div class="step-card">
+					<div class="step-number">2</div>
+					<h3>Collect</h3>
+					<p>We manage the secure, private network that collects real-time, tamper-proof data 24/7.</p>
+				</div>
+				<div class="step-arrow">&rarr;</div>
+				<div class="step-card">
+					<div class="step-number">3</div>
+					<h3>Deliver</h3>
+					<p>Our platform delivers clean, actionable data and insights directly to your systems.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ============================================= -->
+	<!-- Final CTA Section -->
+	<!-- ============================================= -->
+	<section class="final-cta-section fade-in">
+		<div class="container text-center">
+			<h2>Ready to Build a Resilient and Profitable Grid?</h2>
+			<p>Partner with Powerenv to launch a targeted pilot program and witness the power of guaranteed data.</p>
+			<a href="/contact" class="button-primary">Request a Pilot Program</a>
+		</div>
+	</section>
+
+</BaseLayout>
+
+<script>
+	// Simple fade-in on scroll animation
+	const fadeInElements = document.querySelectorAll('.fade-in');
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('visible');
+				observer.unobserve(entry.target);
+			}
+		});
+	}, {
+		threshold: 0.1 // Trigger when 10% of the element is visible
+	});
+
+	fadeInElements.forEach(el => {
+		observer.observe(el);
+	});
+</script>
+
+<style>
+/* Scoped styles for the Home Page */
+.text-center { text-align: center; }
+
+/* Animation Styles */
+.fade-in {
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.fade-in.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Increased spacing between sections */
+section:not(.hero) {
+    padding: 6rem 0;
+}
+
+/* Hero Section */
+.hero {
+	background-color: var(--primary-blue);
+	color: var(--text-light);
+	padding: 0;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	min-height: 80vh;
+}
+.hero-content {
+	padding-right: 2rem;
+}
+.hero h1 {
+	color: var(--text-light);
+	font-size: 3.5rem;
+}
+.sub-headline {
+	font-size: 1.2rem;
+	color: #a9b4c2;
+	margin: 1.5rem 0 2.5rem 0;
+}
+.hero-visual img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+    min-height: 80vh;
+}
+
+/* Problem Section */
+.problem-section {
+	background-color: #fff;
+}
+.problem-content {
+	display: flex;
+	align-items: center;
+	gap: 4rem;
+}
+.stat-column {
+	text-align: center;
+	flex-shrink: 0;
+}
+.stat-number {
+	font-size: 5rem;
+	font-weight: bold;
+	color: var(--secondary-green);
+	line-height: 1;
+}
+.stat-label {
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: var(--primary-blue);
+}
+
+/* Solution Section */
+.solution-section .container.text-center > p,
+.solution-section .container.text-center > h2 {
+	max-width: 70ch;
+	margin-left: auto;
+	margin-right: auto;
+}
+.solution-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2rem;
+	margin-top: 3rem;
+}
+.solution-card {
+	background: #fff;
+	padding: 2rem;
+	border-radius: 8px;
+	box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+	text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.solution-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+.icon-wrapper {
+	width: 80px;
+	height: 80px;
+	margin: 0 auto 1.5rem auto;
+	border-radius: 50%;
+	background-color: var(--secondary-green);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+}
+
+/* How It Works Section */
+.how-it-works-section {
+	background-color: #fff;
+}
+.steps-grid {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
+	margin-top: 3rem;
+}
+.step-card {
+	flex: 1;
+}
+.step-number {
+	width: 50px;
+	height: 50px;
+	border: 2px solid var(--secondary-green);
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto 1rem auto;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: var(--secondary-green);
+}
+.step-arrow {
+	font-size: 2.5rem;
+	color: var(--secondary-green);
+}
+
+/* Final CTA Section */
+.final-cta-section {
+	background-color: var(--primary-blue);
+	color: var(--text-light);
+}
+.final-cta-section h2 {
+	color: var(--text-light);
+}
+.final-cta-section p {
+	color: #a9b4c2;
+	max-width: 60ch;
+	margin: 1rem auto 2rem auto;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+	.hero {
+		grid-template-columns: 1fr;
+		text-align: center;
+	}
+	.hero-content {
+		padding: 4rem 1.5rem;
+		order: 2;
+	}
+	.hero-visual {
+		order: 1;
+		height: 300px;
+        min-height: auto;
+	}
+    .hero-visual img {
+        min-height: auto;
+    }
+	.problem-content {
+		flex-direction: column;
+		text-align: center;
+	}
+	.solution-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 768px) {
+	.steps-grid {
+		flex-direction: column;
+	}
+	.step-arrow {
+		transform: rotate(90deg);
+		margin: 1rem 0;
+	}
+}
+</style>

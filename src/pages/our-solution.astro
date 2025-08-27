@@ -1,0 +1,169 @@
+---
+// src/pages/our-solution.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+---
+<BaseLayout title="Our Solution">
+    <PageHeader 
+        title="The PowrMET End-to-End Metering Platform"
+        subtitle="A fully-integrated system of hardware, networking, and software, delivered as a service."
+    />
+
+    <!-- ============================================= -->
+    <!-- Section 1: The PowrMET Smart Meter -->
+    <!-- ============================================= -->
+    <section class="feature-section fade-in">
+        <div class="container feature-grid">
+            <div class="feature-image">
+                <img src="https://placehold.co/600x500/e0e0e0/333?text=PowrMET+Meter" alt="High-quality render of the PowrMET Smart Meter">
+            </div>
+            <div class="feature-content">
+                <h2>The PowrMET Smart Meter</h2>
+                <p>The intelligent edge device of our network. Designed in India for Indian conditions, it ensures precise measurement and reliable communication.</p>
+                <ul class="feature-list">
+                    <li>BIS-Certified, High-Accuracy Metering</li>
+                    <li>Integrated LoRaWAN Communication Module</li>
+                    <li>Advanced Tamper Detection (Magnetic, Enclosure, etc.)</li>
+                    <li>Remote Connect/Disconnect Capabilities</li>
+                    <li>Hardened, Weather-Proof Enclosure (IP65 Rated)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- Section 2: The LoRaWAN Gateway -->
+    <!-- ============================================= -->
+    <section class="feature-section feature-reversed fade-in">
+        <div class="container feature-grid">
+            <div class="feature-image">
+                <img src="./images/gateway.png" alt="Image of the outdoor LoRaWAN gateway">
+            </div>
+            <div class="feature-content">
+                <h2>The LoRaWAN Gateway</h2>
+                <p>The backbone of our private network. A single gateway can cover vast areas, drastically reducing deployment complexity and cost compared to cellular alternatives.</p>
+                <ul class="feature-list">
+                    <li>Long-Range Connectivity (up to 10km)</li>
+                    <li>Carrier-Grade Reliability & Uptime</li>
+                    <li>Secure, Encrypted Backhaul to Network Server</li>
+                    <li>Rapid, Low-Cost Installation on Existing Infrastructure</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- Section 3: Data & Analytics Platform -->
+    <!-- ============================================= -->
+    <section class="feature-section fade-in">
+        <div class="container feature-grid">
+            <div class="feature-image">
+                <img src="https://placehold.co/600x500/2CA58D/FFFFFF?text=Data+Dashboard" alt="Mockup of a clean, professional data dashboard">
+            </div>
+            <div class="feature-content">
+                <h2>The Data & Analytics Platform</h2>
+                <p>Where data becomes intelligence. Our cloud platform provides the tools to manage your network, integrate with existing systems, and uncover critical insights.</p>
+                <ul class="feature-list">
+                    <li>Real-time Network Monitoring & Health Dashboard</li>
+                    <li>Seamless DISCOM Billing System Integration (via APIs)</li>
+                    <li>Advanced Analytics for Loss Detection & Grid Planning</li>
+                    <li>Optional Consumer-Facing Mobile App (B2B2C offering)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+</BaseLayout>
+
+<script>
+	// Simple fade-in on scroll animation
+	const fadeInElements = document.querySelectorAll('.fade-in');
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('visible');
+				observer.unobserve(entry.target);
+			}
+		});
+	}, { threshold: 0.1 });
+	fadeInElements.forEach(el => observer.observe(el));
+</script>
+
+<style>
+    .feature-section {
+        padding: 6rem 0;
+        background-color: #fff;
+    }
+    /* Creates the alternating white/gray background */
+    .feature-section:nth-child(odd) {
+        background-color: var(--neutral-light-gray);
+    }
+
+    .feature-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .feature-image img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .feature-content h2 {
+        font-size: 2.5rem;
+    }
+    .feature-content p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .feature-list {
+        list-style: none;
+        padding-left: 0;
+    }
+    .feature-list li {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+        position: relative;
+    }
+    .feature-list li::before {
+        content: '✓';
+        color: var(--secondary-green);
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+    }
+
+    /* Modifier to reverse the column order */
+    .feature-reversed .feature-grid .feature-image {
+        order: 2;
+    }
+    .feature-reversed .feature-grid .feature-content {
+        order: 1;
+    }
+
+    /* Animation */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @media (max-width: 992px) {
+        .feature-grid {
+            grid-template-columns: 1fr;
+        }
+        .feature-reversed .feature-grid .feature-image,
+        .feature-reversed .feature-grid .feature-content {
+            order: initial; /* Reset order on mobile */
+        }
+    }
+</style>
