@@ -2,6 +2,6 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://mukesh-dev-git.github.io', // <-- Replace with your username
-  base: '/powerenv-technologies', // <-- This is your repository name
+  // This file should be empty for Vercel and custom domains.
+  // The 'site' and 'base' properties have been removed.
 });

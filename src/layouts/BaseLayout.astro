@@ -14,7 +14,8 @@ const { title } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="description" content="Powerenv Technologies provides ultra-reliable smart metering to eliminate revenue loss and modernize India's grid." />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+		<!-- CORRECTED PATH: Removed the BASE_URL prefix -->
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title} | Powerenv Technologies</title>
 
@@ -23,8 +24,8 @@ const { title } = Astro.props;
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
-		<!-- Global Stylesheet -->
-		<link rel="stylesheet" href={`${import.meta.env.BASE_URL}styles/global.css`}>
+		<!-- CORRECTED PATH: Removed the BASE_URL prefix -->
+		<link rel="stylesheet" href="/styles/global.css">
 	</head>
 	<body>
 		<Header />
