@@ -1,6 +1,10 @@
 ---
+// Import the regular components
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+// 1. Import the Vercel Analytics component for Astro
+import Analytics from '@vercel/analytics/astro';
 
 export interface Props {
 	title: string;
@@ -14,7 +18,6 @@ const { title } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="description" content="Powerenv Technologies provides ultra-reliable smart metering to eliminate revenue loss and modernize India's grid." />
 		<meta name="viewport" content="width=device-width" />
-		<!-- CORRECTED PATH: Removed the BASE_URL prefix -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title} | Powerenv Technologies</title>
@@ -24,7 +27,7 @@ const { title } = Astro.props;
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
-		<!-- CORRECTED PATH: Removed the BASE_URL prefix -->
+		<!-- Global Stylesheet -->
 		<link rel="stylesheet" href="/styles/global.css">
 	</head>
 	<body>
@@ -33,5 +36,8 @@ const { title } = Astro.props;
 			<slot /> <!-- Page content will be injected here -->
 		</main>
 		<Footer />
+
+		<!-- 2. Add the Analytics component here -->
+		<Analytics />
 	</body>
 </html>
