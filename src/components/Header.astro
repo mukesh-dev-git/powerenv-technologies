@@ -5,18 +5,40 @@
     <div class="container">
         <nav class="main-nav">
             <a href="/" class="logo">
-               <img src="/images/logo.png" alt="Powerenv Technologies Logo" />
+                <img src="/images/logo.png" alt="Powerenv Technologies Logo" />
             </a>
-            <ul class="nav-links">
-                <li><a href="/our-solution">Our Solution</a></li>
-                <li><a href="/the-technology">The Technology</a></li>
-                <li><a href="/our-impact">Our Impact</a></li>
-                <li><a href="/about">About Us</a></li>
-            </ul>
-            <a href="/contact" class="button-primary nav-cta">Request a Pilot Program</a>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+
+            <div class="nav-menu-wrapper" id="nav-menu-wrapper">
+                <ul class="nav-links">
+                    <li><a href="/our-solution">Our Solution</a></li>
+                    <li><a href="/the-technology">The Technology</a></li>
+                    <li><a href="/our-impact">Our Impact</a></li>
+                    <li><a href="/about">About Us</a></li>
+                </ul>
+                <a href="/contact" class="button-primary nav-cta">Request a Pilot Program</a>
+            </div>
         </nav>
     </div>
 </header>
+
+<script>
+    // JavaScript to toggle the mobile menu
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenuWrapper = document.getElementById('nav-menu-wrapper');
+
+    if (menuToggle && navMenuWrapper) {
+        menuToggle.addEventListener('click', () => {
+            navMenuWrapper.classList.toggle('is-open');
+            const isOpen = navMenuWrapper.classList.contains('is-open');
+            menuToggle.setAttribute('aria-expanded', isOpen.toString());
+        });
+    }
+</script>
 
 <style>
     .site-header {
@@ -54,16 +76,60 @@
     .nav-links a:hover {
         border-bottom-color: var(--secondary-green);
     }
-
-    /* Basic responsive for navigation */
-    @media (max-width: 992px) {
-        .nav-links {
-            display: none; /* Hide for a future mobile menu */
-        }
+    .nav-menu-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
     }
-    @media (max-width: 768px) {
+
+    /* Hamburger Menu Button Styles */
+    .menu-toggle {
+        display: none; /* Hidden by default on large screens */
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        z-index: 1001;
+    }
+    .menu-toggle svg {
+        color: var(--primary-blue);
+    }
+
+    /* Responsive styles for mobile navigation */
+    @media (max-width: 992px) {
+        .menu-toggle {
+            display: block; /* Show the hamburger button */
+        }
+        .nav-menu-wrapper {
+            /* Hide the menu off-screen by default */
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background: #fff;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s ease-in-out;
+        }
+        .nav-menu-wrapper.is-open {
+            right: 0; /* Slide the menu in when active */
+        }
+        .nav-links {
+            flex-direction: column;
+            text-align: center;
+            width: 100%;
+        }
+        .nav-links a {
+            font-size: 1.5rem;
+            display: block;
+            padding: 1rem 0;
+        }
         .nav-cta {
-            display: none; /* Hide CTA on small screens */
+            margin-top: 2rem;
         }
     }
 </style>
