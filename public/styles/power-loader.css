@@ -1,0 +1,466 @@
+/* Power-themed Loading Animation */
+.power-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary-blue) 0%, #0E2A4A 100%);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+}
+
+.power-loader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.power-loader-container {
+  position: relative;
+  width: 200px;
+  height: 150px;
+  margin-bottom: 2rem;
+}
+
+/* Power Outlet */
+.power-outlet {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80px;
+  height: 60px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.outlet-holes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.outlet-hole {
+  width: 12px;
+  height: 6px;
+  background: var(--primary-blue);
+  border-radius: 3px;
+}
+
+.outlet-hole.ground {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  align-self: center;
+  margin-top: 4px;
+}
+
+/* Power Plug */
+.power-plug {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 40px;
+  background: #333333;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  animation: plugMove 4s ease-in-out infinite;
+  z-index: 3;
+}
+
+.plug-prongs {
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.plug-prong {
+  width: 12px;
+  height: 4px;
+  background: #888888;
+  border-radius: 2px;
+}
+
+.plug-prong.ground {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  align-self: center;
+  margin-top: 3px;
+}
+
+/* Power Cable */
+.power-cable {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 120px;
+  height: 4px;
+  background: #333333;
+  border-radius: 2px;
+  animation: cableWave 2s ease-in-out infinite;
+}
+
+.power-cable::before {
+  content: '';
+  position: absolute;
+  left: -25px;
+  top: -4px;
+  width: 25px;
+  height: 12px;
+  background: #444444;
+  border-radius: 6px;
+}
+
+/* Electric Sparks */
+.electric-spark {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--secondary-green);
+  border-radius: 50%;
+  animation: sparkle 1.2s ease-in-out infinite;
+  box-shadow: 0 0 8px var(--secondary-green);
+}
+
+.spark-1 {
+  right: 12px;
+  top: 35%;
+  animation-delay: 2.5s;
+}
+
+.spark-2 {
+  right: 18px;
+  top: 65%;
+  animation-delay: 2.8s;
+}
+
+.spark-3 {
+  right: 8px;
+  top: 50%;
+  animation-delay: 3.1s;
+}
+
+/* Additional sparks for connection effect */
+.spark-4 {
+  right: 25px;
+  top: 45%;
+  animation-delay: 3.2s;
+  width: 4px;
+  height: 4px;
+}
+
+.spark-5 {
+  right: 15px;
+  top: 25%;
+  animation-delay: 3.4s;
+  width: 4px;
+  height: 4px;
+}
+
+/* Power Waves/Energy */
+.power-wave {
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border: 3px solid var(--secondary-green);
+  border-radius: 50%;
+  opacity: 0;
+  animation: powerPulse 1.5s ease-out infinite;
+  animation-delay: 3s;
+}
+
+.power-wave:nth-child(8) {
+  animation-delay: 3.3s;
+}
+
+.power-wave:nth-child(9) {
+  animation-delay: 3.6s;
+}
+
+/* Loading Text */
+.power-loader-text {
+  color: white;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: textFade 2s ease-in-out 1s forwards;
+}
+
+.power-loader-subtext {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  opacity: 0;
+  animation: textFade 2s ease-in-out 1.5s forwards;
+}
+
+/* Progress Bar */
+.power-progress {
+  width: 200px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  margin-top: 2rem;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.power-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--secondary-green) 0%, #34D399 50%, var(--secondary-green) 100%);
+  background-size: 200% 100%;
+  border-radius: 3px;
+  width: 0%;
+  animation: progressFill 3s ease-in-out forwards, shimmer 1.5s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(44, 165, 141, 0.5);
+}
+
+/* Power Level Indicator */
+.power-level {
+  position: absolute;
+  top: -25px;
+  right: 0;
+  color: var(--secondary-green);
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  font-weight: bold;
+  opacity: 0;
+  animation: powerLevel 3s ease-in-out forwards;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes powerLevel {
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+/* Animations */
+@keyframes plugMove {
+  0% {
+    transform: translateY(-50%) translateX(0);
+  }
+  25% {
+    transform: translateY(-50%) translateX(20px);
+  }
+  50% {
+    transform: translateY(-50%) translateX(40px);
+  }
+  75%, 100% {
+    transform: translateY(-50%) translateX(52px);
+  }
+}
+
+@keyframes cableWave {
+  0%, 100% {
+    transform: translateY(-50%) scaleY(1);
+    width: 120px;
+  }
+  25% {
+    width: 130px;
+    transform: translateY(-50%) scaleY(1.1);
+  }
+  50% {
+    width: 140px;
+    transform: translateY(-50%) scaleY(1.2);
+  }
+  75%, 100% {
+    width: 132px;
+    transform: translateY(-50%) scaleY(1);
+  }
+}
+
+@keyframes sparkle {
+  0%, 70% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1.5);
+    box-shadow: 0 0 15px var(--secondary-green);
+  }
+  85% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes powerPulse {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.5);
+  }
+  25% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.7);
+  }
+  75% {
+    opacity: 0.9;
+    transform: translateY(-50%) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50%) scale(2);
+  }
+}
+
+@keyframes textFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes progressFill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Connection Flash Effect */
+.connection-flash {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, rgba(44, 165, 141, 0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0;
+  animation: connectionFlash 0.5s ease-out;
+  animation-delay: 3s;
+}
+
+/* Connected State Animation */
+.power-loader.connected .electric-spark {
+  animation: connectedSpark 0.4s ease-in-out infinite;
+}
+
+.power-loader.connected .power-outlet {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 20px rgba(44, 165, 141, 0.3);
+}
+
+.power-loader.connected .power-plug {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), 0 0 15px rgba(44, 165, 141, 0.2);
+}
+
+@keyframes connectedSpark {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+    box-shadow: 0 0 20px var(--secondary-green);
+  }
+}
+
+@keyframes connectedSpark {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+    box-shadow: 0 0 10px var(--secondary-green);
+  }
+}
+
+/* Power Surge Effect */
+.power-surge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(44, 165, 141, 0.2) 0%, transparent 70%);
+  opacity: 0;
+  animation: surgePulse 0.8s ease-out;
+}
+
+@keyframes surgePulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .power-loader-container {
+    width: 150px;
+    height: 120px;
+  }
+  
+  .power-outlet {
+    width: 60px;
+    height: 45px;
+  }
+  
+  .power-plug {
+    width: 45px;
+    height: 30px;
+  }
+  
+  .power-cable {
+    width: 90px;
+  }
+  
+  .power-loader-text {
+    font-size: 1.2rem;
+  }
+  
+  .power-progress {
+    width: 150px;
+  }
+}

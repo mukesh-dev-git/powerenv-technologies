@@ -1,0 +1,601 @@
+/* Smart Grid Wireless Connection Loader */
+.power-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+  overflow: hidden;
+}
+
+.power-loader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(44, 165, 141, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(44, 165, 141, 0.08) 0%, transparent 50%);
+  animation: gridPulse 4s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+.power-loader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.smart-grid-container {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  margin-bottom: 2rem;
+}
+
+/* Communication Tower */
+.comm-tower {
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+  width: 8px;
+  height: 180px;
+  background: linear-gradient(to top, #444, #666, #888, #aaa);
+  transform-origin: bottom center;
+  animation: towerEmerge 2s ease-out;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.comm-tower::before {
+  content: '';
+  position: absolute;
+  top: -25px;
+  left: -18px;
+  width: 44px;
+  height: 25px;
+  background: linear-gradient(145deg, #ff4444, #cc2222);
+  border-radius: 4px;
+  animation: towerLightBlink 1.5s ease-in-out infinite 2s;
+  box-shadow: 0 2px 8px rgba(255, 68, 68, 0.4);
+}
+
+.comm-tower::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: -30px;
+  width: 66px;
+  height: 3px;
+  background: linear-gradient(90deg, #666, #999, #666);
+  box-shadow: 
+    0 25px 0 2px #777,
+    0 50px 0 4px #888,
+    0 75px 0 6px #999,
+    0 100px 0 8px #aaa;
+  border-radius: 2px;
+}
+
+/* Tower Foundation */
+.comm-tower-base {
+  position: absolute;
+  right: 46px;
+  bottom: 45px;
+  width: 16px;
+  height: 8px;
+  background: linear-gradient(145deg, #333, #555);
+  border-radius: 2px;
+  animation: towerBaseEmerge 1.5s ease-out 0.5s both;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Tower Signal Rings */
+.tower-signal-ring {
+  position: absolute;
+  right: 54px;
+  bottom: 120px;
+  width: 0;
+  height: 0;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  animation: signalRing 2s ease-out infinite 3s;
+}
+
+.tower-signal-ring:nth-child(2) {
+  animation-delay: 3.3s;
+}
+
+.tower-signal-ring:nth-child(3) {
+  animation-delay: 3.6s;
+}
+
+@keyframes towerEmerge {
+  0% {
+    height: 0;
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  30% {
+    height: 60px;
+    opacity: 0.6;
+    transform: scaleY(0.3);
+  }
+  60% {
+    height: 140px;
+    opacity: 0.8;
+    transform: scaleY(0.8);
+  }
+  100% {
+    height: 180px;
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes towerBaseEmerge {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes towerLightBlink {
+  0%, 70% { 
+    opacity: 0.3; 
+    transform: scale(1);
+  }
+  15%, 35% { 
+    opacity: 1; 
+    box-shadow: 0 0 25px #ff4444, 0 0 40px #ff4444;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes signalRing {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+    border-color: var(--secondary-green);
+  }
+  50% {
+    opacity: 0.6;
+    border-color: rgba(44, 165, 141, 0.8);
+  }
+  100% {
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+    border-color: transparent;
+    transform: translate(-40px, -40px);
+  }
+}
+
+/* Smart Meter */
+.smart-meter {
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
+  width: 80px;
+  height: 100px;
+  background: linear-gradient(145deg, #2a2a2a, #404040);
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  transform-origin: bottom center;
+  animation: meterPowerUp 2s ease-out 0.5s both;
+}
+
+.smart-meter::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 50px;
+  height: 30px;
+  background: #000;
+  border-radius: 4px;
+  box-shadow: inset 0 0 10px rgba(44, 165, 141, 0.3);
+}
+
+.smart-meter::after {
+  content: '';
+  position: absolute;
+  top: 55px;
+  left: 20px;
+  width: 40px;
+  height: 20px;
+  background: linear-gradient(90deg, #333, #555);
+  border-radius: 4px;
+}
+
+@keyframes meterPowerUp {
+  0% {
+    transform: scale(0.5) translateY(20px);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1) translateY(-5px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Meter Display */
+.meter-display {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 50px;
+  height: 30px;
+  background: #000;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary-green);
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  font-weight: bold;
+  animation: displayBoot 3s ease-in-out 2s both;
+}
+
+@keyframes displayBoot {
+  0% { color: transparent; }
+  20% { color: #444; }
+  40% { color: #666; }
+  60% { color: #888; }
+  80% { color: #aaa; }
+  100% { color: var(--secondary-green); }
+}
+
+/* Wireless Connection Waves */
+.connection-wave {
+  position: absolute;
+  left: 130px;
+  bottom: 120px;
+  width: 0;
+  height: 0;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  animation: waveExpand 1.5s ease-out infinite;
+}
+
+.connection-wave:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.connection-wave:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.connection-wave:nth-child(4) {
+  animation-delay: 0.9s;
+}
+
+@keyframes waveExpand {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+    border-color: var(--secondary-green);
+  }
+  50% {
+    opacity: 0.6;
+    border-color: rgba(44, 165, 141, 0.8);
+  }
+  100% {
+    width: 140px;
+    height: 140px;
+    opacity: 0;
+    border-color: transparent;
+    transform: translate(-70px, -70px);
+  }
+}
+
+/* Data Packets */
+.data-packet {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--secondary-green);
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 8px var(--secondary-green);
+}
+
+.data-packet-1 {
+  left: 140px;
+  bottom: 120px;
+  animation: dataTransfer1 2s ease-in-out infinite 3s;
+}
+
+.data-packet-2 {
+  left: 145px;
+  bottom: 125px;
+  animation: dataTransfer2 2s ease-in-out infinite 3.3s;
+}
+
+.data-packet-3 {
+  left: 135px;
+  bottom: 115px;
+  animation: dataTransfer3 2s ease-in-out infinite 3.6s;
+}
+
+@keyframes dataTransfer1 {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(50px, -30px) scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(100px, -60px) scale(0.3);
+  }
+}
+
+@keyframes dataTransfer2 {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(45px, -25px) scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(90px, -50px) scale(0.3);
+  }
+}
+
+@keyframes dataTransfer3 {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(55px, -35px) scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(110px, -70px) scale(0.3);
+  }
+}
+
+/* Connection Status Indicator */
+.connection-status {
+  position: absolute;
+  top: 50px;
+  right: 40px;
+  width: 12px;
+  height: 12px;
+  background: #666;
+  border-radius: 50%;
+  animation: statusIndicator 4s ease-in-out 3s both;
+}
+
+@keyframes statusIndicator {
+  0% { 
+    background: #666; 
+    box-shadow: none;
+  }
+  50% { 
+    background: #ffaa00; 
+    box-shadow: 0 0 15px #ffaa00;
+  }
+  100% { 
+    background: var(--secondary-green); 
+    box-shadow: 0 0 20px var(--secondary-green);
+  }
+}
+
+/* Grid Visualization */
+.grid-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+  background-image: 
+    linear-gradient(rgba(44, 165, 141, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(44, 165, 141, 0.3) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridFlow 8s linear infinite 4s;
+}
+
+@keyframes gridFlow {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(40px, 40px); }
+}
+
+/* Power Surge Effect */
+.power-surge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, 
+    rgba(44, 165, 141, 0.3) 0%, 
+    rgba(44, 165, 141, 0.1) 30%, 
+    transparent 70%);
+  opacity: 0;
+  animation: surgePulse 0.8s ease-out;
+  pointer-events: none;
+}
+
+@keyframes surgePulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+/* Loading Text */
+.power-loader-text {
+  color: var(--text-light);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+.power-loader-subtext {
+  color: var(--text-muted);
+  font-size: 1rem;
+  text-align: center;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+}
+
+/* Loading Progress Bar */
+.loading-progress {
+  width: 300px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  margin: 1rem auto;
+}
+
+.loading-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, 
+    var(--secondary-green), 
+    rgba(44, 165, 141, 0.8), 
+    var(--secondary-green));
+  border-radius: 2px;
+  animation: progressFill 6s ease-out forwards;
+  position: relative;
+}
+
+.loading-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -50px;
+  width: 50px;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.4), 
+    transparent);
+  animation: progressShine 2s ease-in-out infinite;
+}
+
+.loading-percentage {
+  color: var(--secondary-green);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-family: 'Courier New', monospace;
+}
+
+@keyframes progressFill {
+  0% { width: 0%; }
+  20% { width: 25%; }
+  40% { width: 50%; }
+  60% { width: 75%; }
+  80% { width: 90%; }
+  100% { width: 100%; }
+}
+
+@keyframes progressShine {
+  0% { transform: translateX(-100px); }
+  100% { transform: translateX(350px); }
+}
+
+@keyframes textGlow {
+  0% { text-shadow: 0 0 5px rgba(44, 165, 141, 0.3); }
+  100% { text-shadow: 0 0 20px rgba(44, 165, 141, 0.8); }
+}
+
+/* Connected State */
+.power-loader.connected .smart-meter {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 30px rgba(44, 165, 141, 0.3);
+}
+
+.power-loader.connected .comm-tower {
+  box-shadow: 0 0 20px rgba(44, 165, 141, 0.2);
+}
+
+.power-loader.connected .meter-display {
+  animation: connectedDisplay 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes connectedDisplay {
+  0% { 
+    box-shadow: inset 0 0 10px rgba(44, 165, 141, 0.3); 
+  }
+  100% { 
+    box-shadow: inset 0 0 20px rgba(44, 165, 141, 0.6); 
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .smart-grid-container {
+    width: 300px;
+    height: 200px;
+    transform: scale(0.8);
+  }
+  
+  .power-loader-text {
+    font-size: 1.5rem;
+  }
+  
+  .power-loader-subtext {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .smart-grid-container {
+    width: 250px;
+    height: 160px;
+    transform: scale(0.7);
+  }
+  
+  .power-loader-text {
+    font-size: 1.2rem;
+  }
+  
+  .power-loader-subtext {
+    font-size: 0.8rem;
+  }
+}

@@ -33,13 +33,54 @@ const { title } = Astro.props;
 		<!-- Animation Enhancements -->
 		<link rel="stylesheet" href="/styles/animations.css">
 		
+		<!-- Smart Grid Loader Animation -->
+		<link rel="stylesheet" href="/styles/smart-grid-loader.css">
+		
 		<!-- Locomotive Scroll CSS -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.css">
 	</head>
 	<body>
-		<!-- Loading Overlay -->
-		<div class="loading-overlay" id="loading">
-			<div class="loading-spinner"></div>
+		<!-- Smart Grid Loading Overlay -->
+		<div class="power-loader" id="powerLoader">
+			<div class="smart-grid-container">
+				<!-- Communication Tower -->
+				<div class="comm-tower">
+					<div class="connection-status"></div>
+				</div>
+				<div class="comm-tower-base"></div>
+				
+				<!-- Tower Signal Rings -->
+				<div class="tower-signal-ring"></div>
+				<div class="tower-signal-ring"></div>
+				<div class="tower-signal-ring"></div>
+				
+				<!-- Smart Meter -->
+				<div class="smart-meter">
+					<div class="meter-display">PWR</div>
+				</div>
+				
+				<!-- Wireless Connection Waves -->
+				<div class="connection-wave"></div>
+				<div class="connection-wave"></div>
+				<div class="connection-wave"></div>
+				<div class="connection-wave"></div>
+				
+				<!-- Data Packets -->
+				<div class="data-packet data-packet-1"></div>
+				<div class="data-packet data-packet-2"></div>
+				<div class="data-packet data-packet-3"></div>
+				
+				<!-- Grid Visualization -->
+				<div class="grid-lines"></div>
+			</div>
+			
+			<div class="power-loader-text">Loading Website</div>
+			<div class="power-loader-subtext">Establishing Smart Grid Connection...</div>
+			
+			<div class="loading-progress">
+				<div class="loading-progress-fill"></div>
+			</div>
+			<div class="loading-percentage">0%</div>
 		</div>
 		
 		<div data-scroll-container>
@@ -57,20 +98,61 @@ const { title } = Astro.props;
 			
 			// Hide loading overlay and initialize animations when page loads
 			document.addEventListener('DOMContentLoaded', () => {
-				// Hide loading overlay
-				const loadingOverlay = document.getElementById('loading');
-				if (loadingOverlay) {
+				// Smart grid loader animation sequence
+				const powerLoader = document.getElementById('powerLoader');
+				if (powerLoader) {
+					// Animate loading percentage
+					const loadingPercentage = powerLoader.querySelector('.loading-percentage');
+					if (loadingPercentage) {
+						let progress = 0;
+						const progressInterval = setInterval(() => {
+							progress += Math.random() * 8 + 2; // Random increment between 2-10
+							if (progress >= 100) {
+								progress = 100;
+								clearInterval(progressInterval);
+							}
+							loadingPercentage.textContent = Math.round(progress) + '%';
+						}, 100);
+					}
+					
+					// Stage 1: Connection establishment (at 4 seconds - after tower and meter animations)
 					setTimeout(() => {
-						loadingOverlay.classList.add('fade-out');
+						powerLoader.classList.add('connected');
+						
+						// Create power surge effect
+						const surge = document.createElement('div');
+						surge.className = 'power-surge';
+						powerLoader.appendChild(surge);
+						
+						// Update text
+						const loaderText = powerLoader.querySelector('.power-loader-text');
+						const loaderSubtext = powerLoader.querySelector('.power-loader-subtext');
+						
+						if (loaderText) loaderText.textContent = 'Connection Established';
+						if (loaderSubtext) loaderSubtext.textContent = 'Loading Website Content...';
+						
+						// Remove surge effect after animation
 						setTimeout(() => {
-							loadingOverlay.style.display = 'none';
-						}, 500);
-					}, 1000);
+							if (surge.parentNode) surge.parentNode.removeChild(surge);
+						}, 800);
+						
+					}, 4000);
+					
+					// Stage 2: Fade out loader (after 6.5 seconds total)
+					setTimeout(() => {
+						powerLoader.classList.add('fade-out');
+						setTimeout(() => {
+							powerLoader.style.display = 'none';
+						}, 800);
+					}, 6500);
 				}
 				
 				// Initialize simple animations for now
 				try {
-					initializeSimple();
+					// Delay initialization until loader is almost done
+					setTimeout(() => {
+						initializeSimple();
+					}, 6000);
 				} catch (error) {
 					console.error('Animation initialization failed:', error);
 					// Ensure normal scrolling still works
