@@ -29,13 +29,60 @@ const { title } = Astro.props;
 
 		<!-- Global Stylesheet -->
 		<link rel="stylesheet" href="/styles/global.css">
+		
+		<!-- Animation Enhancements -->
+		<link rel="stylesheet" href="/styles/animations.css">
+		
+		<!-- Locomotive Scroll CSS -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.css">
 	</head>
 	<body>
-		<Header />
-		<main>
-			<slot /> <!-- Page content will be injected here -->
-		</main>
-		<Footer />
+		<!-- Loading Overlay -->
+		<div class="loading-overlay" id="loading">
+			<div class="loading-spinner"></div>
+		</div>
+		
+		<div data-scroll-container>
+			<Header />
+			<main data-scroll-section>
+				<slot /> <!-- Page content will be injected here -->
+			</main>
+			<Footer />
+		</div>
+
+		<!-- GSAP and Animation Scripts -->
+		<script type="module">
+			import { initializeSimple } from '/src/utils/simple-animations.js';
+			// import { initializeAnimations } from '/src/utils/main-animations.js';
+			
+			// Hide loading overlay and initialize animations when page loads
+			document.addEventListener('DOMContentLoaded', () => {
+				// Hide loading overlay
+				const loadingOverlay = document.getElementById('loading');
+				if (loadingOverlay) {
+					setTimeout(() => {
+						loadingOverlay.classList.add('fade-out');
+						setTimeout(() => {
+							loadingOverlay.style.display = 'none';
+						}, 500);
+					}, 1000);
+				}
+				
+				// Initialize simple animations for now
+				try {
+					initializeSimple();
+				} catch (error) {
+					console.error('Animation initialization failed:', error);
+					// Ensure normal scrolling still works
+					document.body.style.overflow = 'auto';
+					const container = document.querySelector('[data-scroll-container]');
+					if (container) {
+						container.style.height = 'auto';
+						container.style.overflow = 'visible';
+					}
+				}
+			});
+		</script>
 
 		<!-- 2. Add the Analytics component here -->
 		<Analytics />
