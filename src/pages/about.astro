@@ -37,24 +37,31 @@ import PageHeader from '../components/PageHeader.astro';
             <div class="team-grid">
                 <!-- Team Member 1 -->
                 <div class="team-card">
-                    <img src="https://placehold.co/300x300/e0e0e0/333?text=Founder+Photo" alt="Photo of a team member">
-                    <h3>[Founder's Name]</h3>
+                    <img src="./images/mukesh.jpeg" alt="Photo of a team member">
+                    <h3>MUKESHKUMAR M</h3>
                     <p class="title">Founder & CEO</p>
-                    <p class="bio">A brief bio highlighting relevant experience in the energy sector, telecommunications, or technology leadership.</p>
+                    <p class="bio">Expertise in Hardware & Product design</p>
                 </div>
                 <!-- Team Member 2 -->
                 <div class="team-card">
-                    <img src="https://placehold.co/300x300/e0e0e0/333?text=CTO+Photo" alt="Photo of a team member">
-                    <h3>[CTO's Name]</h3>
-                    <p class="title">Chief Technology Officer</p>
-                    <p class="bio">A brief bio focusing on technical expertise, hardware design, network architecture, or software development.</p>
+                    <img src="./images/delfi.jpeg" alt="Photo of a team member">
+                    <h3>DELFI A</h3>
+                    <p class="title">Co-Founder</p>
+                    <p class="bio">Expertise in software & Web applications</p>
                 </div>
                 <!-- Team Member 3 -->
                 <div class="team-card">
-                    <img src="https://placehold.co/300x300/e0e0e0/333?text=Advisor+Photo" alt="Photo of a team member">
-                    <h3>[Advisor's Name]</h3>
-                    <p class="title">Strategic Advisor</p>
-                    <p class="bio">A brief bio for a key advisor, perhaps with deep industry connections or experience within Indian DISCOMs.</p>
+                    <img src="./images/pandeeswaran.jpg " alt="Photo of a team member">
+                    <h3>DR C PANDEESWARAN</h3>
+                    <p class="title">Industry Expert</p>
+                    <p class="bio">Associate professor & Expert in Information and Technology</p>
+                </div>
+                <!-- Team Member 4 -->
+                <div class="team-card">
+                    <img src="./images/vishkamnix.jpg" alt="Photo of a team member">
+                    <h3>MR VINAYAGAMOORTHY ARUMUGAM</h3>
+                    <p class="title">Strategy Advisor</p>
+                    <p class="bio">Founder & CEO of Vishkamnix Technologies Private Limited</p>
                 </div>
             </div>
         </div>
@@ -109,18 +116,20 @@ import PageHeader from '../components/PageHeader.astro';
     }
     .team-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 2rem;
     }
     .team-card {
         text-align: center;
     }
     .team-card img {
-        width: 100%;
-        max-width: 200px;
+        width: 200px;
+        height: 200px;
         border-radius: 50%;
         margin-bottom: 1.5rem;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        object-fit: contain;
+        object-position: center;
     }
     .team-card h3 {
         margin-bottom: 0.25rem;
@@ -153,6 +162,12 @@ import PageHeader from '../components/PageHeader.astro';
         .image-column {
             order: -1; /* Move image to top on mobile */
         }
+        .team-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
         .team-grid {
             grid-template-columns: 1fr;
         }
