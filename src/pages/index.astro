@@ -7,31 +7,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	<!-- ============================================= -->
 	<!-- Hero Section -->
 	<!-- ============================================= -->
-	<section class="hero" data-scroll-section>
-		<div class="container hero-content" data-scroll data-scroll-speed="1">
-			<h1 class="gradient-text" data-scroll data-scroll-delay="0.1" data-scroll-speed="2">Ending India's Energy Loss Crisis.</h1>
-			<p class="sub-headline" data-scroll data-scroll-delay="0.3" data-scroll-speed="1.5">
+	<section class="hero">
+		<div class="container hero-content">
+			<h1 class="gradient-text" data-aos="fade-up" data-aos-delay="200">Ending India's Energy Loss Crisis.</h1>
+			<p class="sub-headline" data-aos="fade-up" data-aos-delay="400">
 				Powerenv Technologies provides the ultra-reliable smart metering platform that enables electricity distributors to eliminate revenue loss, modernize the grid, and build a sustainable energy future.
 			</p>
-			<a href="/contact" class="button-primary button-magnetic interactive-highlight" data-scroll data-scroll-delay="0.5" data-scroll-speed="1">Learn About Our Pilot Program</a>
+			<a href="/contact" class="button-primary button-magnetic interactive-highlight" data-aos="fade-up" data-aos-delay="600">Learn About Our Pilot Program</a>
 		</div>
-		<div class="hero-visual parallax-container" data-scroll data-scroll-speed="0.5">
+		<div class="hero-visual parallax-container" data-aos="fade-left" data-aos-delay="300">
 			<!-- A more relevant and professional image is used here. -->
-			<img src="/images/Overview.png" alt="Modern electrical grid infrastructure at dusk" class="parallax-element image-reveal" data-scroll data-scroll-speed="0.8">
+			<img src="/images/Overview.png" alt="Modern electrical grid infrastructure at dusk" class="parallax-element image-reveal">
 		</div>
 	</section>
 
 	<!-- ============================================= -->
 	<!-- Problem Section -->
 	<!-- ============================================= -->
-	<section class="problem-section fade-in" data-scroll-section>
-		<div class="container" data-scroll data-scroll-speed="1">
+	<section class="problem-section" data-aos="fade-up" data-aos-duration="1200">
+		<div class="container">
 			<div class="problem-content">
-				<div class="stat-column" data-scroll data-scroll-direction="horizontal" data-scroll-speed="-2">
+				<div class="stat-column" data-aos="zoom-in" data-aos-delay="200">
 					<div class="stat-number">17%+</div>
 					<div class="stat-label">AT&C Losses</div>
 				</div>
-				<div class="text-column" data-scroll data-scroll-direction="horizontal" data-scroll-speed="2">
+				<div class="text-column" data-aos="fade-left" data-aos-delay="400">
 					<h2>The Trillion-Rupee Problem</h2>
 					<p>India's DISCOMs are facing critical AT&C losses. It's a significant threat to our energy security and financial stability, translating to thousands of crores in lost revenue annually. These losses stem from theft, inefficiency, and a lack of real-time data from unreliable legacy systems.</p>
 				</div>
@@ -42,12 +42,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	<!-- ============================================= -->
 	<!-- Solution Section -->
 	<!-- ============================================= -->
-	<section class="solution-section fade-in" data-scroll-section>
-		<div class="container text-center" data-scroll data-scroll-speed="1">
-			<h2 data-scroll data-scroll-speed="2">A Complete Solution for 100% Accountability.</h2>
+	<section class="solution-section" data-aos="fade-up" data-aos-duration="1200">
+		<div class="container text-center">
+			<h2 data-aos="fade-up" data-aos-delay="100">A Complete Solution for 100% Accountability.</h2>
 			<div class="solution-grid">
 				<!-- Column 1 -->
-				<div class="solution-card card-tilt interactive-highlight" data-scroll data-scroll-delay="0.1" data-scroll-speed="1.5">
+				<div class="solution-card card-tilt interactive-highlight" data-aos="fade-up" data-aos-delay="200">
 					<div class="icon-wrapper icon-float">
 						<!-- Signal Tower Icon -->
 						<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12" y2="22"></line><line x1="12" y1="17" x2="12" y2="4"></line></svg>
@@ -56,7 +56,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					<p>Our private LoRaWAN network guarantees data from every meter, even in basements and remote areas where cellular fails.</p>
 				</div>
 				<!-- Column 2 -->
-				<div class="solution-card card-tilt interactive-highlight" data-scroll data-scroll-delay="0.3" data-scroll-speed="1.5">
+				<div class="solution-card card-tilt interactive-highlight" data-aos="fade-up" data-aos-delay="400">
 					<div class="icon-wrapper icon-bounce">
 						<!-- Rupee Symbol Icon -->
 						<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12"></path><path d="M6 8h12"></path><path d="M6 13h12"></path><path d="M6 18h12"></path><path d="M18 8a4 4 0 0 0-4-4h-4a4 4 0 0 0-4 4"></path><path d="M18 13a4 4 0 0 0-4-4h-4a4 4 0 0 0-4 4"></path></svg>
@@ -65,7 +65,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					<p>Eliminate recurring SIM card fees forever. Our MaaS model converts a massive CAPEX into a predictable OPEX.</p>
 				</div>
 				<!-- Column 3 -->
-				<div class="solution-card card-tilt interactive-highlight" data-scroll data-scroll-delay="0.5" data-scroll-speed="1.5">
+				<div class="solution-card card-tilt interactive-highlight" data-aos="fade-up" data-aos-delay="600">
 					<div class="icon-wrapper icon-float">
 						<!-- Shield Icon -->
 						<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
@@ -80,23 +80,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	<!-- ============================================= -->
 	<!-- How It Works Section -->
 	<!-- ============================================= -->
-	<section class="how-it-works-section fade-in" data-scroll-section>
-		<div class="container text-center" data-scroll data-scroll-speed="1">
-			<h2 data-scroll data-scroll-speed="2">How It Works</h2>
+	<section class="how-it-works-section" data-aos="fade-up" data-aos-duration="1200">
+		<div class="container text-center">
+			<h2 data-aos="fade-up" data-aos-delay="100">How It Works</h2>
 			<div class="steps-grid">
-				<div class="step-card" data-scroll data-scroll-delay="0.1" data-scroll-speed="1.5">
+				<div class="step-card" data-aos="zoom-in" data-aos-delay="200">
 					<div class="step-number">1</div>
 					<h3>Deploy</h3>
 					<p>We install our robust PowrMET smart meters and LoRaWAN gateways across your entire network.</p>
 				</div>
-				<div class="step-arrow" data-scroll data-scroll-delay="0.3">&rarr;</div>
-				<div class="step-card" data-scroll data-scroll-delay="0.4" data-scroll-speed="1.5">
+				<div class="step-arrow" data-aos="fade-in" data-aos-delay="300">&rarr;</div>
+				<div class="step-card" data-aos="zoom-in" data-aos-delay="400">
 					<div class="step-number">2</div>
 					<h3>Collect</h3>
 					<p>We manage the secure, private network that collects real-time, tamper-proof data 24/7.</p>
 				</div>
-				<div class="step-arrow" data-scroll data-scroll-delay="0.6">&rarr;</div>
-				<div class="step-card" data-scroll data-scroll-delay="0.7" data-scroll-speed="1.5">
+				<div class="step-arrow" data-aos="fade-in" data-aos-delay="500">&rarr;</div>
+				<div class="step-card" data-aos="zoom-in" data-aos-delay="600">
 					<div class="step-number">3</div>
 					<h3>Deliver</h3>
 					<p>Our platform delivers clean, actionable data and insights directly to your systems.</p>
@@ -108,11 +108,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	<!-- ============================================= -->
 	<!-- Final CTA Section -->
 	<!-- ============================================= -->
-	<section class="final-cta-section fade-in" data-scroll-section>
-		<div class="container text-center" data-scroll data-scroll-speed="1">
-			<h2 data-scroll data-scroll-speed="2">Ready to Build a Resilient and Profitable Grid?</h2>
-			<p data-scroll data-scroll-delay="0.2" data-scroll-speed="1.5">Partner with Powerenv to launch a targeted pilot program and witness the power of guaranteed data.</p>
-			<a href="/contact" class="button-primary button-magnetic interactive-highlight" data-scroll data-scroll-delay="0.4" data-scroll-speed="1">Request a Pilot Program</a>
+	<section class="final-cta-section" data-aos="fade-up" data-aos-duration="1200">
+		<div class="container text-center">
+			<h2 data-aos="fade-up" data-aos-delay="100">Ready to Build a Resilient and Profitable Grid?</h2>
+			<p data-aos="fade-up" data-aos-delay="300">Partner with Powerenv to launch a targeted pilot program and witness the power of guaranteed data.</p>
+			<a href="/contact" class="button-primary button-magnetic interactive-highlight" data-aos="zoom-in" data-aos-delay="500">Request a Pilot Program</a>
 		</div>
 	</section>
 
@@ -121,6 +121,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <style>
 /* Scoped styles for the Home Page */
 .text-center { text-align: center; }
+
+/* Ensure all sections are visible */
+section {
+	position: relative;
+	z-index: 2;
+	display: block;
+}
 
 /* Increased spacing between sections */
 section:not(.hero) {
@@ -136,6 +143,8 @@ section:not(.hero) {
 	grid-template-columns: 1fr 1fr;
 	align-items: center;
 	min-height: 80vh;
+	position: relative;
+	z-index: 1;
 }
 .hero-content {
 	padding-right: 2rem;

@@ -8,9 +8,10 @@ import Analytics from '@vercel/analytics/astro';
 
 export interface Props {
 	title: string;
+	showLoader?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, showLoader = false } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -33,9 +34,6 @@ const { title } = Astro.props;
 		<!-- Animation Enhancements -->
 		<link rel="stylesheet" href="/styles/animations.css">
 		
-		<!-- Smart Grid Loader Animation -->
-		<link rel="stylesheet" href="/styles/smart-grid-loader.css">
-		
 		<!-- Inline CSS Variables for Vercel compatibility -->
 		<style>
 			:root {
@@ -47,227 +45,205 @@ const { title } = Astro.props;
 				--font-heading: 'Montserrat', sans-serif;
 				--font-body: 'Lato', sans-serif;
 			}
+			
+			/* CRITICAL: Force scrollable content - override all animations.css styles */
+			html, html.has-scroll-smooth {
+				overflow: auto !important;
+				height: auto !important;
+			}
+			
+			body, .has-scroll-smooth body {
+				overflow: auto !important;
+				overflow-x: hidden !important;
+				position: static !important;
+				height: auto !important;
+			}
+			
+			/* Override any locomotive scroll styles completely */
+			[data-scroll-container], 
+			.has-scroll-smooth [data-scroll-container],
+			.locomotive-initialized [data-scroll-container] {
+				height: auto !important;
+				overflow: visible !important;
+				min-height: auto !important;
+			}
+			
+			.main-container {
+				position: relative;
+				z-index: 1;
+				min-height: 100vh;
+				height: auto !important;
+				overflow: visible !important;
+			}
+			
+			/* Ensure main content has proper height */
+			main {
+				min-height: auto !important;
+				position: relative;
+				z-index: 1;
+				height: auto !important;
+				overflow: visible !important;
+			}
+
+			/* Force sections to be visible */
+			section {
+				display: block !important;
+				position: relative !important;
+				overflow: visible !important;
+				height: auto !important;
+			}
 		</style>
-		
-		<!-- Locomotive Scroll CSS -->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.css">
 	</head>
 	<body>
-		<!-- Smart Grid Loading Overlay -->
-		<div class="power-loader" id="powerLoader">
-			<div class="smart-grid-container">
-				<!-- Communication Tower -->
-				<div class="comm-tower">
-					<div class="connection-status"></div>
-				</div>
-				<div class="comm-tower-base"></div>
-				
-				<!-- Tower Signal Rings -->
-				<div class="tower-signal-ring"></div>
-				<div class="tower-signal-ring"></div>
-				<div class="tower-signal-ring"></div>
-				
-				<!-- Smart Meter -->
-				<div class="smart-meter">
-					<div class="meter-display">PWR</div>
-				</div>
-				
-				<!-- Wireless Connection Waves -->
-				<div class="connection-wave"></div>
-				<div class="connection-wave"></div>
-				<div class="connection-wave"></div>
-				<div class="connection-wave"></div>
-				
-				<!-- Data Packets -->
-				<div class="data-packet data-packet-1"></div>
-				<div class="data-packet data-packet-2"></div>
-				<div class="data-packet data-packet-3"></div>
-				
-				<!-- Grid Visualization -->
-				<div class="grid-lines"></div>
-			</div>
-			
-			<div class="power-loader-text">Loading Website</div>
-			<div class="power-loader-subtext">Establishing Smart Grid Connection...</div>
-			
-			<div class="loading-progress">
-				<div class="loading-progress-fill"></div>
-			</div>
-			<div class="loading-percentage">0%</div>
-		</div>
-		
-		<div data-scroll-container>
+		<div class="main-container">
 			<Header />
-			<main data-scroll-section>
+			<main>
 				<slot /> <!-- Page content will be injected here -->
 			</main>
 			<Footer />
 		</div>
 
-		<!-- GSAP and Animation Scripts -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+		<!-- AOS (Animate On Scroll) Library - Using CDN with proper loading -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+		
+		<!-- Enhanced Animation Implementation -->
 		<script type="module">
-			// Inline essential animation functions for Vercel compatibility
-			const initializeEssentialAnimations = () => {
-				if (typeof gsap === 'undefined') {
-					console.warn('GSAP not loaded, skipping animations');
-					return;
+			// Force remove any locomotive scroll classes and ensure scrolling
+			const forceScrollingEnabled = () => {
+				// Remove problematic classes from html and body
+				document.documentElement.classList.remove('has-scroll-smooth', 'has-scroll-dragging', 'locomotive-initialized');
+				document.body.classList.remove('has-scroll-smooth', 'locomotive-initialized');
+				
+				// Force scrollable styles
+				document.documentElement.style.overflow = 'auto';
+				document.body.style.overflow = 'auto';
+				document.body.style.overflowX = 'hidden';
+				document.body.style.height = 'auto';
+				document.body.style.position = 'static';
+
+				// Find and fix any data-scroll-container elements
+				const scrollContainer = document.querySelector('[data-scroll-container]');
+				if (scrollContainer) {
+					scrollContainer.style.height = 'auto';
+					scrollContainer.style.overflow = 'visible';
+					scrollContainer.style.minHeight = 'auto';
 				}
-				
-				gsap.registerPlugin(ScrollTrigger);
-				
-				// Hero animations with fallback
-				const heroTitle = document.querySelector('.hero h1');
-				const heroSubtitle = document.querySelector('.hero .sub-headline');
-				const heroButton = document.querySelector('.hero .button-primary');
-				
-				if (heroTitle) {
-					gsap.fromTo(heroTitle, 
-						{ opacity: 0, y: 50, scale: 0.9 },
-						{ 
-							opacity: 1, 
-							y: 0, 
-							scale: 1,
-							duration: 1.2, 
-							delay: 0.2, 
-							ease: "power3.out"
-						}
-					);
-				}
-				
-				if (heroSubtitle) {
-					gsap.fromTo(heroSubtitle,
-						{ opacity: 0, y: 30 },
-						{ opacity: 1, y: 0, duration: 1, delay: 0.5, ease: "power3.out" }
-					);
-				}
-				
-				if (heroButton) {
-					gsap.fromTo(heroButton,
-						{ opacity: 0, y: 20 },
-						{ opacity: 1, y: 0, duration: 1, delay: 0.8, ease: "power3.out" }
-					);
-				}
-				
-				// Basic scroll trigger animations
-				gsap.utils.toArray('.animate-on-scroll').forEach((element) => {
-					gsap.fromTo(element, 
-						{ opacity: 0, y: 50 },
-						{
-							opacity: 1,
-							y: 0,
-							duration: 1,
-							ease: "power3.out",
-							scrollTrigger: {
-								trigger: element,
-								start: "top 80%",
-								end: "bottom 20%",
-								toggleActions: "play none none reverse"
-							}
-						}
-					);
+			};
+
+			// Load AOS library dynamically
+			const loadAOS = () => {
+				return new Promise((resolve, reject) => {
+					const script = document.createElement('script');
+					script.src = 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js';
+					script.onload = () => resolve();
+					script.onerror = () => reject();
+					document.head.appendChild(script);
 				});
 			};
-			
-			// Robust loader initialization that works on both local and Vercel
-			const initializeLoader = () => {
-				// Smart grid loader animation sequence
-				const powerLoader = document.getElementById('powerLoader');
-				if (!powerLoader) return;
-				
-				// Ensure CSS variables are available
-				const computedStyle = getComputedStyle(document.documentElement);
-				const primaryBlue = computedStyle.getPropertyValue('--primary-blue') || '#0A2342';
-				const secondaryGreen = computedStyle.getPropertyValue('--secondary-green') || '#2CA58D';
-				
-				// Animate loading percentage with better error handling
-				const loadingPercentage = powerLoader.querySelector('.loading-percentage');
-				if (loadingPercentage) {
-					let progress = 0;
-					const progressInterval = setInterval(() => {
-						progress += Math.random() * 8 + 2; // Random increment between 2-10
-						if (progress >= 100) {
-							progress = 100;
-							clearInterval(progressInterval);
-						}
-						loadingPercentage.textContent = Math.round(progress) + '%';
-					}, 100);
-				}
-				
-				// Stage 1: Connection establishment (at 4 seconds - after tower and meter animations)
-				setTimeout(() => {
-					powerLoader.classList.add('connected');
-					
-					// Create power surge effect
-					const surge = document.createElement('div');
-					surge.className = 'power-surge';
-					powerLoader.appendChild(surge);
-					
-					// Update text
-					const loaderText = powerLoader.querySelector('.power-loader-text');
-					const loaderSubtext = powerLoader.querySelector('.power-loader-subtext');
-					
-					if (loaderText) loaderText.textContent = 'Connection Established';
-					if (loaderSubtext) loaderSubtext.textContent = 'Loading Website Content...';
-					
-					// Remove surge effect after animation
-					setTimeout(() => {
-						if (surge.parentNode) surge.parentNode.removeChild(surge);
-					}, 800);
-					
-				}, 4000);
-				
-				// Stage 2: Fade out loader (after 6.5 seconds total)
-				setTimeout(() => {
-					powerLoader.classList.add('fade-out');
-					setTimeout(() => {
-						powerLoader.style.display = 'none';
-						// Ensure page is scrollable after loader
-						document.body.style.overflow = 'auto';
-					}, 800);
-				}, 6500);
-			};
 
-			// Initialize animations with better error handling
-			const initAnimations = () => {
+			// Initialize AOS animations
+			const initializeAOSAnimations = async () => {
 				try {
-					// Delay initialization until loader is almost done
-					setTimeout(() => {
-						initializeEssentialAnimations();
-					}, 6000);
-				} catch (error) {
-					console.error('Animation initialization failed:', error);
-					// Ensure normal scrolling still works
-					document.body.style.overflow = 'auto';
-					const container = document.querySelector('[data-scroll-container]');
-					if (container) {
-						container.style.height = 'auto';
-						container.style.overflow = 'visible';
+					await loadAOS();
+					
+					// Wait a bit for AOS to be available
+					await new Promise(resolve => setTimeout(resolve, 100));
+					
+					if (typeof AOS !== 'undefined') {
+						AOS.init({
+							duration: 1000,          // Animation duration
+							easing: 'ease-out-cubic', // Easing function
+							once: true,              // Animation happens only once
+							offset: 100,             // Trigger point
+							delay: 0,                // Global delay
+							disable: false           // Always enabled
+						});
+						console.log('AOS animations initialized successfully');
+						return true;
+					} else {
+						throw new Error('AOS not available');
 					}
+				} catch (error) {
+					console.log('Using fallback animations (AOS not available)');
+					initializeFallbackAnimations();
+					return false;
 				}
 			};
 
-			// Multi-stage initialization for better Vercel compatibility
-			const initialize = () => {
-				initializeLoader();
-				initAnimations();
+			// Enhanced fallback animations
+			const initializeFallbackAnimations = () => {
+				// Create intersection observer for smooth animations
+				const observerOptions = {
+					threshold: 0.1,
+					rootMargin: '0px 0px -50px 0px'
+				};
+
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							const element = entry.target;
+							element.style.opacity = '1';
+							element.style.transform = 'translateY(0) scale(1)';
+							element.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+							observer.unobserve(element);
+						}
+					});
+				}, observerOptions);
+
+				// Observe elements with data-aos attributes
+				document.querySelectorAll('[data-aos]').forEach(el => {
+					el.style.opacity = '0';
+					el.style.transform = 'translateY(30px) scale(0.95)';
+					observer.observe(el);
+				});
+
+				// Hero elements with staggered animation
+				const heroElements = [
+					{ el: document.querySelector('.hero h1'), delay: 200 },
+					{ el: document.querySelector('.hero .sub-headline'), delay: 400 },
+					{ el: document.querySelector('.hero .button-primary'), delay: 600 }
+				];
+				
+				heroElements.forEach(({ el, delay }) => {
+					if (el) {
+						setTimeout(() => {
+							el.style.opacity = '1';
+							el.style.transform = 'translateY(0) scale(1)';
+							el.style.transition = 'all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+						}, delay);
+					}
+				});
+
+				console.log('Enhanced fallback animations initialized');
 			};
 
-			// Use multiple event listeners for better compatibility
+			// Initialize everything
+			const initialize = () => {
+				// First, force scrolling to be enabled
+				forceScrollingEnabled();
+				
+				// Then initialize animations
+				setTimeout(initializeAOSAnimations, 200);
+			};
+
+			// Initialize immediately and set up observers
 			if (document.readyState === 'loading') {
 				document.addEventListener('DOMContentLoaded', initialize);
 			} else {
-				// DOM is already loaded
 				initialize();
 			}
-			
-			// Fallback initialization
+
+			// Also run after page load as fallback
 			window.addEventListener('load', () => {
-				if (document.getElementById('powerLoader')?.style.display !== 'none') {
-					initialize();
+				forceScrollingEnabled();
+				// Refresh AOS in case elements were added
+				if (typeof AOS !== 'undefined' && AOS.refresh) {
+					AOS.refresh();
 				}
 			});
+			
+			// Periodically check and fix scrolling (reduce frequency)
+			setInterval(forceScrollingEnabled, 5000);
 		</script>
 
 		<!-- 2. Add the Analytics component here -->
